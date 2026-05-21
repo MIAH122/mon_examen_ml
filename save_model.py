@@ -39,7 +39,8 @@ gb.fit(X_train, y_train)
  #   'acc_gb': acc_gb
 #}
 
-with open('model_gb.pkl', 'wb') as f:
-    pickle.dump(gb, f)
 
-print("✅ model.pkl sauvegardé avec succès !")
+
+# Remplace pickle.dump par :
+joblib.dump(gb, 'model_gb.pkl')
+print("✅ model_gb.pkl sauvegardé !")
