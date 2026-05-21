@@ -2,7 +2,7 @@ import streamlit as st
 import pickle       
 import numpy as np      
 import time  
-
+import joblib
 # ============================================================
 # CONFIG
 # ============================================================
@@ -21,19 +21,16 @@ load_css("style.css")
 # ============================================================
 # CHARGER LE MODÈLE PKL
 # ============================================================
+
 @st.cache_resource
 def load_model():
-    # Simulation ou chargement réel
     try:
-        with open('model_gb.pkl', 'rb') as f:
-            data = pickle.load(f)
-        return data
+        model = joblib.load('model_gb.pkl')  # ← joblib ici
+        return model
     except FileNotFoundError:
-        # Valeurs de secours pour le test si model.pkl n'est pas là
-        return None, 0.76, 0.78, 0.82
+        return None
 
-model, acc_lr, acc_rf, acc_gb = load_model(), 76.62, 75.97, 77.27 ## ITO SOLOINA LE TENA IZY
-
+model, acc_lr, acc_rf, acc_gb = load_model(), 76.62, 75.97, 77.27
 # ============================================================
 # SIDEBAR (Uniquement pour les entrées)
 # ============================================================
